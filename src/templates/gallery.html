@@ -71,19 +71,54 @@
        background: rgba(0, 0, 0, 0.5);
        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
      }
-    .back-link {
-      display: inline-block;
-      margin-bottom: 18px;
-      color: white;
-      text-decoration: none;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: transform 0.2s ease;
-    }
-    .back-link:hover {
-      transform: translateX(-6px);
-    }
+     .back-link {
+       display: inline-block;
+       margin-bottom: 18px;
+       margin-right: 10px;
+       color: white;
+       text-decoration: none;
+       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+       padding: 12px 20px;
+       border-radius: 5px;
+       transition: transform 0.2s, box-shadow 0.2s;
+       border: none;
+       font-size: 14px;
+       font-weight: 600;
+       cursor: pointer;
+     }
+     .back-link:hover {
+       transform: translateY(-2px);
+       box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+     }
+     .back-link:active {
+       transform: translateY(0);
+     }
+     .logout-btn {
+       display: inline-block;
+       color: white;
+       text-decoration: none;
+       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+       padding: 12px 20px;
+       border-radius: 5px;
+       transition: transform 0.2s, box-shadow 0.2s;
+       border: none;
+       font-size: 14px;
+       font-weight: 600;
+       cursor: pointer;
+     }
+     .logout-btn:hover {
+       transform: translateY(-2px);
+       box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+     }
+     .logout-btn:active {
+       transform: translateY(0);
+     }
+      .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
     @media (min-width: 1400px) {
       .container { max-width: 1300px; }
     }
@@ -91,7 +126,10 @@
 </head>
 <body>
   <div class="container">
-    <a href="/" class="back-link">← Powrót do listy galerii</a>
+    <div class="action-buttons">
+      <a href="/" class="back-link">← Powrót do listy galerii</a>
+      <a href="/logout" class="logout-btn">Wyloguj się</a>
+    </div>
     <div class="header">
       <h1><img src="{{ url_for('static', filename='fish.png') }}" alt="fish" style="height:28px;vertical-align:middle;margin-right:8px"> Galeria: {{ folder.label }}</h1>
       <div class="info"> {{ images|count }} zdjęć</div>

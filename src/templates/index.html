@@ -91,16 +91,44 @@
       margin-top: 8px;
     }
     footer {
-      text-align: center;
-      color: white;
-      font-size: 0.9rem;
-      margin-top: 40px;
-      opacity: 0.8;
-    }
-  </style>
+       text-align: center;
+       color: white;
+       font-size: 0.9rem;
+       margin-top: 40px;
+       opacity: 0.8;
+     }
+     .header-actions {
+       display: flex;
+       justify-content: flex-end;
+       margin-bottom: 30px;
+     }
+     .logout-btn {
+       padding: 12px 20px;
+       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+       color: white;
+       border: none;
+       border-radius: 5px;
+       font-size: 14px;
+       font-weight: 600;
+       cursor: pointer;
+       transition: transform 0.2s, box-shadow 0.2s;
+       text-decoration: none;
+       display: inline-block;
+     }
+     .logout-btn:hover {
+       transform: translateY(-2px);
+       box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+     }
+     .logout-btn:active {
+       transform: translateY(0);
+     }
+   </style>
 </head>
 <body>
   <div class="container">
+    <div class="header-actions">
+      <a href="/logout" class="logout-btn">Wyloguj się</a>
+    </div>
     <h1>Galerie Akwarium</h1>
     <div class="gallery-grid">
       {% for folder in folders %}
