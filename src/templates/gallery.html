@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Galeria - {{ folder.label }}</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', 'Apple Color Emoji', 'Noto Color Emoji', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000000; /* czarne tło */
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .header {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 24px;
+      color: white;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+    .info {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    /* jedna kolumna - zdjęcia jedno pod drugim */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .photo-item {
+      background: #0b0b0b;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+     .photo-item:hover {
+       transform: translateY(-6px);
+       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+     }
+     .photo-item a {
+       display: block;
+     }
+     .photo-item img {
+       width: 100%;
+       height: auto; /* zachowaj proporcje, większe zdjęcia */
+       display: block;
+       background: #000;
+     }
+     .photo-time {
+       padding: 10px 14px;
+       text-align: center;
+       font-weight: 700;
+       color: #ffffff;
+       font-size: 1.05rem;
+       background: rgba(0, 0, 0, 0.5);
+       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+     }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: white;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: transform 0.2s ease;
+    }
+    .back-link:hover {
+      transform: translateX(-6px);
+    }
+    @media (min-width: 1400px) {
+      .container { max-width: 1300px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Powrót do listy galerii</a>
+    <div class="header">
+      <h1><img src="{{ url_for('static', filename='fish.png') }}" alt="fish" style="height:28px;vertical-align:middle;margin-right:8px"> Galeria: {{ folder.label }}</h1>
+      <div class="info"> {{ images|count }} zdjęć</div>
+    </div>
+    <div class="gallery-grid">
+        {% for image in images %}
+            <div class="photo-item">
+                <div class="photo-time"> {{ image.hour }}:{{image.minute}}</div>
+                <a href="{{ folder.name }}/{{ image.name }}" target="_blank">
+                    <img src="{{ folder.name }}/{{ image.name }}" alt="{{ image.name }}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
